@@ -7,15 +7,12 @@ services:
   life_writer:
     build: LifeWriter/
     container_name: life_writer
-    environment:
-      - APACHE_RUN_USER=#1000
     volumes:
       - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
     ports:
       - 8080:80
     links:
       - life_writer_db
-    working_dir: ${APP_PATH_CONTAINER}
 
   life_writer_db:
     image: mariadb
@@ -30,11 +27,3 @@ services:
       MYSQL_DATABASE: life_writer
       MYSQL_USER: egor
       MYSQL_PASSWORD: 123123
-
-  composer:
-    image: composer:2.0
-    container_name: life_writer_composer
-    volumes:
-      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
-    working_dir: ${APP_PATH_CONTAINER}
-    command: composer install

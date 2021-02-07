@@ -25,10 +25,15 @@
 ### install the app through docker-compose
 - docker-compose up --build -d
 
-### create .env file from .env.example
-
-### generate laravel app key inside laravel container
+### enter inside "life_writer" laravel container
 - docker exec -it life_writer bash
+
+### install dependencies and create vendor and node_modules folders 
+- composer install --prefer-dist --no-interaction
+- npm install && npm run dev
+
+### create .env file from .env.example and generate app key
+- cp /var/www/html/.env.example /var/www/html/.env
 - php artisan key:generate
 
 ### set interpreter php from Docker and check in settings that Code Sniffer and Xdebug are working
@@ -38,4 +43,5 @@
 ### additional commands
 - docker-compose ps
 - docker-compose down
-- docker-compose run composer install
+- npm run dev
+- npm run watch
