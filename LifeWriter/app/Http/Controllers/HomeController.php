@@ -11,11 +11,8 @@ class HomeController extends Controller
      *
      * @return Renderable
      */
-    public function index()
+    public function index(): Renderable
     {
-        $posts = 'bingo';
-        echo $posts;
         return view('welcome');
     }
-
 }
