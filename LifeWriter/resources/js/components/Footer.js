@@ -8,7 +8,7 @@ function Footer()
                 <div className="footer__row">
                     <div className="footer__column">
                         <div className="footer__address">
-                            <p>Footer example</p>
+                            <p>....</p>
                         </div>
                     </div>
                 </div>

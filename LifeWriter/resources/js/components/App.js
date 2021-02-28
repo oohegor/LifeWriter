@@ -1,7 +1,8 @@
 import React from 'react';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import Page from "./Page";
 import ReactDOM from "react-dom";
 
 function App()
@@ -12,7 +13,11 @@ function App()
                 <div className="page">
                     <Header/>
                     <div className="content">
-                        Hello world - body example
+                        <Route
+                            path={"/page"}
+                            render={() => <Page />}
+                        />
+                        <Page />
                     </div>
                     <Footer/>
                 </div>

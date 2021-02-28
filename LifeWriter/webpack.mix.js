@@ -1,4 +1,6 @@
 const mix = require('laravel-mix');
+const path = require('path');
+const SRC = path.resolve(__dirname, './public/audio');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,3 +16,16 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .react()
     .sass('resources/sass/app.scss', 'public/css');
+
+mix.webpackConfig({
+        module: {
+            rules: [
+                {
+                    test: /\.wav$/,
+                    include: SRC,
+                    loader: 'file-loader'
+                }
+            ]
+        }
+    }
+);

@@ -15,11 +15,11 @@ function Header()
             <div className="header">
                 <div className="header__row">
                     <nav className="header__menu menu">
-                        Header example and menu
                         <div className="menu__body">
                             <ul className="menu__list">
                                 <li><NavLink href={"/write"} linkName={"write"}/></li>
                                 <li><NavLink href={"/read"} linkName={"read"}/></li>
+                                <li><NavLink href={"/page"} linkName={"page"}/></li>
                             </ul>
                         </div>
                     </nav>
