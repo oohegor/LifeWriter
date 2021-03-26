@@ -31,10 +31,14 @@
 ### Install dependencies, create 'vendor' and 'node_modules' folders and generate complete '.env' file.
 - deploy.sh
 
+### Run app.
+- npm run dev
+
 ### Set interpreter PHP from Docker, Code Sniffer and Xdebug.
-- cli interpreter: lifewriter_life_writer:latest
-- docker mappings: -v /var/www/LifeWriter/LifeWriter:/var/www/html
-- php code_sniffer path: /var/www/html/vendor/squizlabs/php_codesniffer/bin/phpcs
+- *cli interpreter:* **lifewriter_life_writer:latest**
+- *docker mappings:* **-v /var/www/LifeWriter/LifeWriter:/var/www/html**
+- *php code_sniffer path:* **/var/www/html/vendor/bin/phpcs**
+- *path to phpcbf:* **/var/www/html/vendor/bin/phpcbf**
 - (sometimes ide cannot see docker.sock file for connecting then: `sudo chmod 777 /var/run/docker.sock`)
 - ![set_codesniffer](set_codesniffer.png)
 - ![set_codesniffer](set_inspection.png)
