@@ -1,30 +1,22 @@
 import React from 'react';
-import {NavLink as NavigationLink, Link} from "react-router-dom";
-
-const NavLink = (props) => {
-    return (
-        <NavigationLink to={props.href} className={"menu__link"}
-                        activeClassName="menu__link_active">{props.linkName}</NavigationLink>
-    );
-}
+import {Link} from "react-router-dom";
 
 function Header()
 {
     return (
-        <div className="header-container">
-            <div className="header">
-                <div className="header__row">
-                    <nav className="header__menu menu">
-                        <div className="menu__body">
-                            <ul className="menu__list">
-                                <li><NavLink href={"/write"} linkName={"write"}/></li>
-                                <li><NavLink href={"/read"} linkName={"read"}/></li>
-                                <li><NavLink href={"/page"} linkName={"page"}/></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <div className="header__logo"><Link to={"/#"}><img src="" alt=""/></Link>
+        <div className="header">
+            <div className="header__row">
+                <nav className="header__menu menu">
+                    <div className="menu__body">
+                        <ul className="menu__list">
+                            <li><a href="#create" className="menu__link">create</a></li>
+                            <li><a href="#contact" className="menu__link">contact</a></li>
+                        </ul>
                     </div>
+                </nav>
+                <div className="header__logo">
+                    {/*didn't work without BrowserRouter and on the contrary*/}
+                    <Link to={"/"}><img src="../../../public/img/typewriter.png" alt=""/></Link>
                 </div>
             </div>
         </div>

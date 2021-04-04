@@ -8,8 +8,9 @@ import firstLettersSoundMp3 from '../../../public/audio/first_keyboard.wav'
 import secondLettersSoundMp3 from '../../../public/audio/second_fourth_keyboard.wav'
 import thirdLettersSoundMp3 from '../../../public/audio/third_keyboard.wav'
 
-export default function AllClipboard()
+export default function Paper()
 {
+    const [silentMode, setSilentMode] = useState(false);
     const [isStandardKeyboardPressed, setIsStandardKeyboardPressed] = useState(0);
     const [eventNeedDelay, setEventNeedDelay] = useState(false);
 
@@ -21,8 +22,6 @@ export default function AllClipboard()
     const [thirdKeyboard] = useSound(thirdLettersSoundMp3);
 
     const handleOnKeyDown = (e) => {
-        console.log('type =>', e);
-
         switch (e.code) {
             case 'Enter':
                 if (!eventNeedDelay) {
@@ -96,37 +95,57 @@ export default function AllClipboard()
         }
     };
 
-    const temporaryStyle = {
-        width: '80%',
-        size: '20px',
-        backgroundColor: "lightPink",
-        padding: "20px",
-        fontFamily: "Arial",
-        textAlign: "center"
-    };
+    // not next line text
+    // @todo need refactor
+    const [textareaValue, setTextarea] = useState({});
 
-    return (
-        <div style={{minHeight: '150px'}}>
-            <p>
-                <strong>Keyboard Event</strong>
-            </p>
-            <textarea
-                onKeyDown = {handleOnKeyDown}
-                style={temporaryStyle}
-                defaultValue='onKeyPress event - write here something'
-                rows={4}
-                cols={50}
-            />
-            <br/>
-            <input
-                onChange={() => {setEventNeedDelay(!eventNeedDelay)}}
-                type="checkbox"
-            />
-            {eventNeedDelay ?
-                (<p>
-                    <span>key not pressed</span>
-                </p>) : null
+    const onPaste = (ev) => {
+        ev.stopPropagation();
+        ev.preventDefault();
+        const elem = textareaValue;
+        const clipboardData = ev.clipboardData || window.clipboardData;
+        const pastedData = clipboardData.getData('Text');
+        let index = elem.selectionStart;
+        for (let i = 0; i < pastedData.length; i++) {
+            const strChar = pastedData.charAt(i);
+            elem.value = elem.value.slice(0, index) + strChar + elem.value.slice(index);
+            if (textareaValue && elem.clientHeight < elem.scrollHeight) {
+                elem.value = elem.value.slice(0, index) + elem.value.slice(index + 1);
+                break;
             }
+            index = index + 1;
+        }
+    }
+
+    const handleTextareaChange = (ev) => {
+        const elem = textareaValue;
+        if (elem.clientHeight < elem.scrollHeight) {
+            elem.value = elem.value.slice(0, elem.selectionStart - 1) + elem.value.slice(elem.selectionStart);
+        }
+    }
+    // end of this block
+
+    // @todo need separate paper functionality and edit buttons
+    return (
+        <div className="paper">
+            <div className="paper__body">
+                <textarea
+                    onChange={handleTextareaChange}
+                    onPaste={onPaste}
+                    ref={textarea => {
+                        setTextarea(textarea);
+                        }}
+                    onKeyDown={silentMode ? null : handleOnKeyDown}
+                    type="text"
+                />
+                <span className="paper__number">1.</span>
+            </div>
+            <input
+                type="checkbox"
+                onChange={() => {
+                    setSilentMode(!silentMode)
+                    }}
+            />
         </div>
     )
 }

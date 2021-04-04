@@ -1,0 +1,130 @@
+//////////////////////////////////////////////////////////////////////
+//							   IMPORTS								//
+//////////////////////////////////////////////////////////////////////
+
+// Helper Styles
+@import "helpers";
+// Custom Reset Styles File
+@import "nullstyle";
+// Header styles
+@import "header";
+// Footer styles
+@import "footer";
+// Paper styles
+@import "paper";
+
+
+//////////////////////////////////////////////////////////////////////
+//								FONTS								//
+//////////////////////////////////////////////////////////////////////
+@font-face {
+    font-family: 'Courier-Prime';
+    src: url('../../public/fonts/Courier-Prime.eot');
+    src: local('☺'), url('../../public/fonts/Courier-Prime.woff') format('woff'), url('../../public/fonts/Courier-Prime.ttf') format('truetype'), url('../../public/fonts/Courier-Prime.svg') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Courier-Prime-Italic';
+    src: url('../../public/fonts/Courier-Prime-Italic.eot');
+    src: local('☺'), url('../../public/fonts/Courier-Prime-Italic.woff') format('woff'), url('../../public/fonts/Courier-Prime-Italic.ttf') format('truetype'), url('../../public/fonts/Courier-Prime-Italic.svg') format('svg');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Courier-Prime-Bold';
+    src: url('../../public/fonts/Courier-Prime-Bold.eot');
+    src: local('☺'), url('../../public/fonts/Courier-Prime-Bold.woff') format('woff'), url('../../public/fonts/Courier-Prime-Bold.ttf') format('truetype'), url('../../public/fonts/Courier-Prime-Bold.svg') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Courier-Prime-Bold-Italic';
+    src: url('../../public/fonts/Courier-Prime-Bold-Italic.eot');
+    src: local('☺'), url('../../public/fonts/Courier-Prime-Bold-Italic.woff') format('woff'), url('../../public/fonts/Courier-Prime-Bold-Italic.ttf') format('truetype'), url('../../public/fonts/Courier-Prime-Bold-Italic.svg') format('svg');
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+//////////////////////////////////////////////////////////////////////
+//								CODE								//
+//////////////////////////////////////////////////////////////////////
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #404143;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #686664;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::selection {
+    background-color: #276f8e;
+    color: white;
+    text-shadow: 0.5px 0.5px 0 #000000;
+}
+// user interface img background style
+.ibg{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    img{display: none;}
+}
+
+//<оболочка>====================================================================================================
+html {
+    scroll-behavior: smooth;
+}
+.wrapper{
+    min-height: 100vh;
+    overflow: hidden;
+}
+//</оболочка>====================================================================================================
+
+//<основная сетка>====================================================================================================
+.container {
+    max-width: $contentPageWidth + 30px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.content {
+    flex: 1 1 auto;
+}
+//</основная сетка>====================================================================================================
+
+//<основной блок>====================================================================================================
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    @extend %flexbox;
+    flex-direction: column;
+}
+.main-screen {
+    flex: 1 0 100%;	//разрешаем увеличиваться, но запрещаем уменьшаться (фулл скрин картинка)
+    position: relative;
+    &__bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+//===================================================================================================================

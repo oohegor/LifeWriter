@@ -1,0 +1,46 @@
+
+//////////////////////////////////////////////////////////////////////
+//							Переменные								//
+//////////////////////////////////////////////////////////////////////
+// Шрифт по умолчанию
+//$fontfamily: "Lato";
+$fontfamily: "Courier-Prime";
+// Цвета
+$white: #fff;
+$black: #000;
+// Размер Экрана
+$maxPageWidth: 1600px;
+$contentPageWidth: 1100px;
+
+//////////////////////////////////////////////////////////////////////
+//								Функции								//
+//////////////////////////////////////////////////////////////////////
+// Возвращает процентное соотношение пиксельной ширины блока к общему размеру страницы 	// if you didn't set params, it return 100%
+@function getPctWidth($widthPx: $contentPageWidth, $fromWidthPx: $contentPageWidth) {
+  @return $widthPx / $fromWidthPx * 100%;
+}
+
+//////////////////////////////////////////////////////////////////////
+//								Шаблоны								//
+//////////////////////////////////////////////////////////////////////
+%flexbox {display: -webkit-box;display: -webkit-flex;display: -moz-box;display: -ms-flexbox;display: flex;font-size: 0;}
+%flexboxinline {display: -webkit-inline-box;display: -moz-inline-box;display: -webkit-inline-flex;display: -ms-inline-flexbox;display: inline-flex;}
+
+%img-standart-props {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+//////////////////////////////////////////////////////////////////////
+//								Миксины								//
+//////////////////////////////////////////////////////////////////////
+@mixin anim($time, $delay) {-webkit-transition: all $time ease $delay;-moz-transition: all $time ease $delay;-o-transition: all $time ease $delay;transition: all $time ease $delay;}
+@mixin anim_cubic($time, $delay) {-webkit-transition: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;-moz-transition: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;-o-transition: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;transition: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;}
+@mixin animate($name, $time, $infinite, $type) {-webkit-animation:$name $time+s $infinite $type;-moz-animation:$name $time+s $infinite $type;-o-animation:$name $time+s $infinite $type;animation:$name $time+s $infinite $type;}
+@mixin rotate($deg) {-webkit-transform: rotate($deg);-moz-transform: rotate($deg);-o-transform: rotate($deg);transform: rotate($deg);}
+@mixin scale($num) {-webkit-transform: scale($num);-moz-transform: scale($num);-o-transform: scale($num);transform: scale($num);}
+@mixin skew($num) {-webkit-transform: skewX($num);-moz-transform: skewX($num);-o-transform: skewX($num);transform: skewX($num);}
+@mixin cnt($h) {display: flex; flex-direction: column; height: $h;text-align: center;align-items: stretch;justify-content: center;}
+@mixin tr($x, $y, $z) {transform: translate3d($x, $y, $z);-webkit-transform: translate3d($x, $y, $z);-moz-transform:translate3d($x, $y, $z);-ms-transform:translate3d($x, $y, $z);-o-transform:translate3d($x, $y, $z);}
+@mixin flexorder($val){-webkit-box-ordinal-group: $val;-moz-box-ordinal-group: $val;-ms-flex-order: $val;-webkit-order: $val;order: $val;}

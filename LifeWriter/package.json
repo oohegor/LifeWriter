@@ -13,6 +13,7 @@
         "@babel/preset-react": "^7.12.13",
         "axios": "^0.21",
         "file-loader": "^6.2.0",
+        "jquery": "^3.6.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",

@@ -1,26 +1,31 @@
 import React from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import Page from "./Page";
+import Paper from "./Paper";
 import ReactDOM from "react-dom";
+import $ from 'jquery';
 
-function App()
-{
+const App = () => {
     return (
         <BrowserRouter>
             <div className="wrapper">
-                <div className="page">
+                <main className="page">
                     <Header/>
-                    <div className="content">
-                        <Route
-                            path={"/page"}
-                            render={() => <Page />}
-                        />
-                        <Page />
+                    <div className="main-screen">
+                        <div className="main-screen__bg ibg">
+                            <img src="../../../public/img/bg_main.jpg" alt=""/>
+                        </div>
                     </div>
-                    <Footer/>
-                </div>
+                    <div className="content">
+                        <div id='create'>
+                            <Paper/>
+                        </div>
+                        <div id='contact'>
+                            <Footer/>
+                        </div>
+                    </div>
+                </main>
             </div>
         </BrowserRouter>
     );
@@ -28,6 +33,21 @@ function App()
 
 export default App;
 
-if (document.getElementById('main')) {
-    ReactDOM.render(<App/>, document.getElementById('main'));
+if (document.getElementById('app')) {
+    ReactDOM.render(<App/>, document.getElementById('app'));
 }
+
+
+//=============================================================================================
+// user interface function
+function ibg()
+{
+    $.each($('.ibg'), function (index, val) {
+        if ($(this).find('img').length > 0) {
+            $(this).css('background-color', '#000');
+            $(this).css('background-image', 'url("' + $(this).find('img').attr('src') + '")');
+        }
+    });
+}
+
+ibg();

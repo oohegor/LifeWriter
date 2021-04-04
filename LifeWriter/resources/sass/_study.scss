@@ -1,0 +1,138 @@
+// заметки
+//
+// 1) все так называемые переменные - это константы, раз объявив уже не перезапишешь
+// 2) шаблоны, они не деблирует ксс код на выходе, а миксины да, следовательно их нужно использовать только, когда нужна передача аргументов
+// 3) переменные которые объявлены до импорта можно использовать в файле который мы импортируем
+
+// sites with info
+// https://techrocks.ru/2017/07/19/sass-techniques/
+
+// function
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: grid-width(5); }
+
+// maps
+$map: (key1: value1, key2: value2, key3: value3);
+
+$status-colors: (
+
+  primary: #000,
+  success: #27BA6C,
+  info: #03a9f4,
+  warning: #FF8833,
+  danger: #ff1a1a
+);
+
+.message {
+
+  @each $status, $color in $status-colors {
+
+    &--#{$status} {
+
+      background: $color;
+    }
+  }
+}
+
+// map-get
+// map-merge
+// https://sass-scss.ru/documentation/sassscript/mapi/
+
+
+// mixin and conditions
+@mixin adjust-location($x, $y) {
+  @if unitless($x) {
+    @error "$x не может быть безразмерным, было .";
+  }
+  @if unitless($y) {
+    @error "$y не может быть безразмерным, было .";
+  }
+  position: relative; left: $x; top: $y;
+}
+
+$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+
+
+@mixin sexy-border($color, $width: 1in) {
+  border: {
+    color: $color;
+    width: $width;
+    style: dashed;
+  }
+}
+p { @include sexy-border(blue); }
+h1 { @include sexy-border(blue, 2in); }
+
+
+// карты
+$mobile-layout: (
+    layout-values: (
+        header: (
+            height: 72px
+        ),
+        sidebar: (
+            width: 100%
+        )
+    )
+);
+$desktop-layout: (
+    layout-values: (
+        header: (
+            height: 86px
+        ),
+        sidebar: (
+            width: 300px
+        )
+    )
+);
+
+// Еще один частая проблемы карт (или листов) — это значения z-индексов. Очень тяжело поддерживать
+// все эти z-индексы различных компонентов. Будет становится все сложнее по мере роста проекта.
+// У вас на проекте есть z-индекс: 9999? У нас нет. Мы определяем все z-индексы в листе в одном месте.
+// И очень легко сделать один компонент выше другого — нужно просто поменять значения в карте — и получишь результат.
+$z-indexes: (
+    error,
+    modal,
+    header,
+    sidebar,
+    footer
+);
+
+// https://codepen.io/and1lt/pen/oZEyxe function for getting cards
+
+
+// loops
+.icon {
+    $_icons: (
+        delete: icn-delete,
+        edit: icn-edit,
+        add: icn-add
+    );
+    &::before {
+        content: '';
+    }
+    @each $label, $icon in $_icons {
+        &--#{$label} {
+            &::before {
+                @include svg-sprite($icon);
+            }
+        }
+    }
+}
