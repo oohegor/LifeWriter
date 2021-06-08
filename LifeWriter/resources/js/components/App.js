@@ -1,25 +1,24 @@
 import React from 'react';
-import {BrowserRouter} from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
-import Paper from "./Paper";
-import ReactDOM from "react-dom";
-import $ from 'jquery';
+import {BrowserRouter} from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import Desk from './Desk/Desk';
+import ReactDOM from 'react-dom';
 
 const App = () => {
     return (
         <BrowserRouter>
-            <div className="wrapper">
-                <main className="page">
+            <div className='wrapper'>
+                <main className='screen'>
                     <Header/>
-                    <div className="main-screen">
-                        <div className="main-screen__bg ibg">
-                            <img src="../../../public/img/bg_main.jpg" alt=""/>
+                    <div className='welcome-screen'>
+                        <div className='welcome-screen__bg ibg'>
+                            <img src='../../../public/img/bg_main.jpg' alt=''/>
                         </div>
                     </div>
-                    <div className="content">
+                    <div className='content'>
                         <div id='create'>
-                            <Paper/>
+                            <Desk/>
                         </div>
                         <div id='contact'>
                             <Footer/>
@@ -33,21 +32,25 @@ const App = () => {
 
 export default App;
 
-if (document.getElementById('app')) {
-    ReactDOM.render(<App/>, document.getElementById('app'));
-}
+ReactDOM.render(
+    <App/>,
+    document.getElementById('app')
+);
 
 
 //=============================================================================================
 // user interface function
-function ibg()
-{
-    $.each($('.ibg'), function (index, val) {
-        if ($(this).find('img').length > 0) {
-            $(this).css('background-color', '#000');
-            $(this).css('background-image', 'url("' + $(this).find('img').attr('src') + '")');
+function ibg() {
+    let ibgElements = document.getElementsByClassName('ibg');
+
+    for (let element of ibgElements) {
+        for (let childrenItem of element.children) {
+            if (childrenItem.localName === 'img') {
+                element.style.backgroundColor = '#000';
+                element.style.backgroundImage = 'url("' + childrenItem.attributes.src.nodeValue + '")';
+            }
         }
-    });
+    }
 }
 
 ibg();

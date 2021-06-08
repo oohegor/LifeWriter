@@ -1,0 +1,124 @@
+//=================================================================================================
+.page {
+    z-index: 0;
+    position: relative;
+    min-height: 95vh;
+    background-color: #26282a;
+    padding: 10px 10px 85px 10px;
+
+    &__body {
+        position: relative;
+        width: 100%;
+        flex: 1 1 auto;
+        max-width: 800px;
+        height: 850px;
+        margin: 0 auto;
+        border: 1px solid #686664;
+    }
+
+    &__textarea {
+        width: 100%;
+        height: 100%;
+        background-color: #3d3d3d;
+        resize: none;
+        padding: clamp(60px, 15vw, 77px) clamp(0px, 5vw, 65px) clamp(15px, 10vw, 70px) clamp(0px, 8vw, 110px);
+        font-size: 17px;
+        line-height: 1.1;
+        font-family: Courier-Prime, sans-serif;
+        color: #dfe1e5;
+    }
+
+    &__index {
+        position: absolute;
+        top: 38px;
+        right: 2.3vw;
+        font-size: 16.5px;
+        color: #dfe1e5;
+
+        @media (max-width: 500px) {
+            top: 20px;
+        }
+    }
+
+    &__manager {
+        z-index: -1;
+        position: relative;
+
+        &_icon {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: 17px;
+            background-color: #232222;
+            cursor: pointer;
+
+            &_block {
+                position: absolute;
+                top: 3px;
+                width: 20px;
+                height: 15px;
+                span {
+                    position: absolute;
+                    top: 5px;
+                    width: 15px;
+                    height: 2px;
+                    background-color: $white;
+                    @include anim(0.4s, 0s);
+
+                    &:first-child{left: 0; @include rotate(40deg);}
+                    &:nth-child(2){left: 10px; @include rotate(-40deg);}
+                }
+
+                &_1 {
+                    left: 10px;
+                }
+                &_2 {
+                    right: 15px;
+                }
+            }
+            &.active{
+                background-color: #131313;
+                span{
+                    @include scale(0);
+                    background-color: $white;
+                    &:first-child{@include rotate(-40deg);}
+                    &:last-child{@include rotate(40deg);}
+                }
+            }
+        }
+
+        &_icon:hover {
+            background-color: #131313;
+        }
+
+        &_buttons {
+            @extend %flexbox;
+            flex: 1 1 auto;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            @include anim(0.4s, 0s);
+            transform: translate(0, -400%);
+        }
+
+        &_buttons.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        &_btn {
+            width: 100%;
+            padding: 3.5px 0 2.5px 0;
+            font-size: 14.5px;
+            background-color: #bec0c2;
+            border: #2d3748 1.5px solid;
+            @include anim(0.5s, 0s);
+        }
+
+        &_btn:hover {
+            background-color: #212328;
+            color: #ced0d4;
+        }
+    }
+}
+//=================================================================================================

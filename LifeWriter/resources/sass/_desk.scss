@@ -1,0 +1,35 @@
+//=================================================================================================
+.desk {
+    position: relative;
+    width: 100%;
+
+    &__row {
+        @extend %flexbox;
+    }
+}
+
+.tools {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    top: 50px;
+    right: 6%;
+
+    &__row {
+        @extend %flexbox;
+        flex: 1 1 auto;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    opacity: 0.5;
+}
+
+.tools:hover {
+    opacity: 1;
+}
+
+.book {
+    width: 100%;
+}
+//=================================================================================================

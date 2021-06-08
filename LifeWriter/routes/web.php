@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LibraryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,12 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+// @todo make independent routes
+Route::apiResource('library', LibraryController::class)
+    ->parameters([
+        'library' => 'book'
+    ]);
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});
